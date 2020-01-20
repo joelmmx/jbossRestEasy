@@ -26,14 +26,14 @@ public class Library {
 
 		// Look up our data source
 		DataSource ds = (DataSource)
-		  initCtx.lookup("java:jboss/datasources/DataSourceDS");
+		  initCtx.lookup("java:jboss/datasources/dce_geoloc09");
 
 		// Allocate and use a connection from the pool
 		Connection conn = ds.getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from test_table");
+		ResultSet rs = stmt.executeQuery("SELECT * FROM geoloc.colonia where id=3");
 		rs.next();
-		String result = rs.getString("name");
+		String result = rs.getString("NOMBRE");
 		conn.close();
 		return result;
 	}
